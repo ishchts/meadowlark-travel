@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc && node ./build/meadowlark.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./src/meadowlark.ts",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,13 @@
   "devDependencies": {
     "@types/express": "4.17.13",
     "@types/express-handlebars": "5.3.1",
+    "@types/jest": "27.0.1",
     "@types/node": "16.9.0",
+    "@types/nodemon": "1.19.1",
+    "jest": "27.1.1",
+    "nodemon": "2.0.12",
+    "ts-jest": "27.0.5",
+    "ts-node": "10.2.1",
     "typescript": "4.4.2"
   }
 }
