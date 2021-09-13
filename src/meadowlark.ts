@@ -8,9 +8,12 @@ const PORT = process.env.PORT || 3000;
 
 app.disable('x-powered-by');
 
-app.engine('handlebars', expressHandlebars());
+app.engine('.hbs', expressHandlebars({
+  defaultLayout: 'main',
+  extname: '.hbs'
+}));
 
-app.set('view engine', 'handlebars');
+app.set('view engine', '.hbs');
 app.set('port', PORT);
 
 app.get('/', handlers.home);
