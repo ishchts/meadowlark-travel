@@ -6,6 +6,8 @@ import * as handlers from './lib/handlers';
 export const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
+app.disable('x-powered-by');
+
 app.engine('handlebars', expressHandlebars());
 
 app.set('view engine', 'handlebars');
