@@ -3,7 +3,7 @@ import expressHandlebars from 'express-handlebars';
 
 import * as handlers from './lib/handlers';
 
-const app: Application = express();
+export const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 app.engine('handlebars', expressHandlebars());
@@ -24,6 +24,8 @@ app.use(handlers.notFound);
 // пользовательская страница 500
 app.use(handlers.serverError);
 
-app.listen(app.get('port'), () => {
-  console.log(`Connected on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(app.get('port'), () => {
+    console.log(`Connected on port ${PORT}`);
+  });
+}

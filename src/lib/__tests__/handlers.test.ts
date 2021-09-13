@@ -4,7 +4,7 @@ test('home page render', () => {
   const req: any = {};
   const res: any = { render: jest.fn() };
   handlers.home(req, res);
-  expect(res.render.mock.calls[0][0]).toBe('home')
+  expect(res.render.mock.calls[0][0]).toBe('home');
 });
 
 test('страница О нас отображается с предсказанием', () => {
@@ -35,4 +35,4 @@ test('рендеринг обработчика ошибки 500', () => {
   handlers.serverError(err, req, res, next);
   expect(res.render.mock.calls.length).toBe(1);
   expect(res.render.mock.calls[0][0]).toBe('error');
-})
+});

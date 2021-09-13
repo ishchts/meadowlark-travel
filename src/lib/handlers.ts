@@ -7,6 +7,5 @@ export const about = (req: Request, res: Response) => res.render('about', { fort
 
 export const notFound = (req: Request, res: Response) => res.render('not-found');
 
+/* eslint-disable no-unused-vars */
 export const serverError: ErrorRequestHandler = (err, req, res, next) => res.render('error');
-
-
