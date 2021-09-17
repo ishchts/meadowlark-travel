@@ -5,6 +5,8 @@ import multiparty from 'multiparty';
 import cookieParser  from 'cookie-parser';
 import expressSession from 'express-session';
 import nodemailer from 'nodemailer';
+import morgan from "morgan";
+import fs from 'fs';
 
 import * as handlers from './lib/handlers';
 
@@ -45,6 +47,17 @@ app.use(expressSession({
   saveUninitialized: false,
   secret: credentials.cookieSecret,
 }));
+
+switch (app.get('env')) {
+  case 'development': {
+    app.use(morgan('dev'));
+    break;
+  }
+  case 'production': {
+    const stream = fs.createWriteStream(__dirname + '/access.log', { flags: 'a' })
+    app.use(morgan('combined', { stream }))
+  }
+}
 
 app.disable('x-powered-by');
 
@@ -91,6 +104,6 @@ app.use(handlers.serverError);
 
 if (require.main === module) {
   app.listen(app.get('port'), () => {
-    console.log(`Connected on port ${PORT}`);
+    console.log(`${app.get('env')} connected on port ${PORT}`);
   });
 }
