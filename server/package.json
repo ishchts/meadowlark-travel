@@ -1,0 +1,64 @@
+{
+  "name": "meadowlark-travel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/meadowlark.ts",
+    "test": "jest",
+    "lint": "eslint ./src/meadowlark.ts ./src/lib/**/*.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishchts/meadowlark-travel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ishchts/meadowlark-travel/issues"
+  },
+  "homepage": "https://github.com/ishchts/meadowlark-travel#readme",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "express-session": "1.17.2",
+    "mongoose": "6.0.7",
+    "morgan": "1.10.0",
+    "multiparty": "4.2.2",
+    "node-fetch": "3.0.0",
+    "nodemailer": "6.6.3",
+    "passport": "0.5.0",
+    "passport-facebook": "3.0.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "1.19.1",
+    "@types/cookie-parser": "1.4.2",
+    "@types/cors": "2.8.12",
+    "@types/express": "4.17.13",
+    "@types/express-session": "1.17.4",
+    "@types/jest": "27.0.1",
+    "@types/morgan": "1.9.3",
+    "@types/multiparty": "0.0.33",
+    "@types/node": "16.9.0",
+    "@types/nodemailer": "6.4.4",
+    "@types/nodemon": "1.19.1",
+    "@types/passport": "1.0.7",
+    "@types/passport-facebook": "2.1.11",
+    "@types/puppeteer": "5.4.4",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "cookie-parser": "1.4.5",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "jest": "27.1.1",
+    "nodemon": "2.0.12",
+    "portfinder": "1.0.28",
+    "puppeteer": "10.2.0",
+    "ts-jest": "27.0.5",
+    "ts-node": "10.2.1",
+    "typescript": "4.4.2"
+  }
+}
