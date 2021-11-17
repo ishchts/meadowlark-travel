@@ -9,7 +9,7 @@ mongoose.connect(credentials.mongo.connectionString)
     console.log('Установлено соединение с MongoDB')
   })
   .catch((err) => {
-    console.log('Ошибка MongoDB:', err.text)
+      console.log('Ошибка MongoDB:', err.text)
   })
 
 export const db = {
