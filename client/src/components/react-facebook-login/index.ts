@@ -1,0 +1,1 @@
+export { ReactFacebookLogin } from './react-facebook-login'

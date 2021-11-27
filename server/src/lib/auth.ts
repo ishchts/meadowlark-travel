@@ -38,6 +38,7 @@ export const createAuth = (app: Application, options: createAuthOptions) => {
           callbackURL: (options.baseUrl || '') + '/auth/facebook/callback',
         },
   (accessToken, refreshToken, profile, done) => {
+          console.log('profile', profile)
           const authId = 'facebook:' + profile.id;
           db.getUserByAuthId(authId)
             .then((user) => {
@@ -64,7 +65,13 @@ export const createAuth = (app: Application, options: createAuthOptions) => {
       )
     },
     registerRoutes: () => {
+      app.post('/auth/facebook/login', (req, res, next) => {
+        console.log('/auth/facebook/login', req.body.userID)
+        res.json({ qwe: 'молодец'})
+      })
+
       app.get('/auth/facebook', (req, res, next) => {
+        console.log('111123', req.query.redirect)
         if(req.query.redirect) {
           console.log('req.session.authRedirect');
           // req.session.authRedirect = req.query.redirect
