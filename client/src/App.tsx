@@ -15,7 +15,7 @@ export const Home: React.FC = () => {
     fetch('/auth/facebook/login', {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json\n'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(responseFacebook)
     }).then(res => {

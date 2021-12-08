@@ -1,7 +1,18 @@
 // https://developers.facebook.com/docs/graph-api/overview
-// https://developers.facebook.com/blog/post/2018/06/08/enforce-https-facebook-login/
+// https://github.com/keppelen/react-facebook-login
 import React, { useEffect, useState, useCallback } from "react";
 import {StatusResponse, ReactFacebookLoginInfo, ReactFacebookFailureResponse} from 'src/types/facebook';
+
+const getParamsFromObject = (params: Record<string, string>): string => {
+  return '?' + Object.keys(params)
+    .map(param => `${param}=${encodeURIComponent(params[param])}`)
+    .join('&');
+}
+
+const getIsMobile = () => {
+  // @ts-ignore
+  return !!((window.navigator && window.navigator.standalone) || navigator.userAgent.match('CriOS') || navigator.userAgent.match(/mobile/i));
+}
 
 export type ReactFacebookLoginProps = {
   appId: string;
@@ -41,6 +52,8 @@ export const ReactFacebookLogin: React.FC<ReactFacebookLoginProps> = ({
       setIsSdkLoaded(true)
     }
   }, [appId, cookie, version, xfbml])
+
+  const isMobile: boolean = getIsMobile()
 
   /**
    * загрузка  и вставка на страницу скрипта facebook
@@ -104,6 +117,16 @@ export const ReactFacebookLogin: React.FC<ReactFacebookLoginProps> = ({
     setIsProcessing(true)
 
     e.preventDefault()
+
+    const params = {
+      client_id: appId,
+      redirect_uri: '/',
+    };
+
+    if (isMobile) {
+      window.location.href = `https://www.facebook.com/dialog/oauth${getParamsFromObject(params)}`;
+      return;
+    }
 
     window.FB.getLoginStatus((statusResponse) => {
       if (statusResponse.status === 'connected') {

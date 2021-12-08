@@ -66,14 +66,33 @@ export const createAuth = (app: Application, options: createAuthOptions) => {
     },
     registerRoutes: () => {
       app.post('/auth/facebook/login', (req, res, next) => {
-        console.log('/auth/facebook/login', req.body.userID)
+        const authId = 'facebook:' + req.body.id
+
+        db.getUserByAuthId(authId)
+          .then((user) => {
+            if (user) {
+              return user
+            }
+
+            db.addUser({
+              authId,
+              name: req.body.name,
+              created: new Date(),
+              role: 'customer',
+            }).then((user) => {
+              console.log('user', user)
+            }).catch((err) => {
+              console.log('err', err)
+            })
+          })
+          .catch((err) => {
+            console.log('err', err)
+          })
         res.json({ qwe: 'молодец'})
       })
 
       app.get('/auth/facebook', (req, res, next) => {
-        console.log('111123', req.query.redirect)
         if(req.query.redirect) {
-          console.log('req.session.authRedirect');
           // req.session.authRedirect = req.query.redirect
         }
         passport.authenticate('facebook')(req, res, next)
